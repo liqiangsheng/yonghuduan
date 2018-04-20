@@ -1,0 +1,355 @@
+.alert{
+    width:560/50rem;
+    height:500/50rem;
+    background:#fff;
+    position:fixed;
+    top:50%;
+    left:50%;
+    border-radius: 4px;
+    transform:translate(-50%,-50%);
+    >.alert_box{
+      >p{
+        width:100%;
+        text-align: right;
+        float:right;
+      }
+      div{
+        input{
+          width:60%;
+          float:right;
+          padding:0;
+          height:60/50rem;
+          margin:0;
+        }
+      }
+    }
+  }
+
+.container{
+  background: #fff;
+
+  padding:10px;
+  padding-top: 0;
+  margin:0 4%;
+  margin-top:2%;
+  .mui-table-view{
+    display: flex;
+    flex-wrap:wrap;
+    &::after{
+      width:0;
+      height:0;
+    }
+    &::before{
+      width:0;
+      heihgt:0;
+    }
+    >.mui-table-view-cell{
+      width:50%;
+      border:none;
+      padding:5px;
+      padding-left:0;
+      >a{
+        display: block;
+        margin:8/50rem;
+        font-size: 28/50rem;
+        color: #FFFFFF;
+
+        background: #FBFBFB;
+        color: #4A4A4A;
+        border-radius: 5px;
+        text-align: center;
+        margin-left:0;
+      }
+      >.selector{
+        background:rgba(235,83,18,1);
+      }
+      &::after{
+        width:0;
+        background-color:none;
+      }
+    }
+  }
+  >.price_title{
+    text-align: center;
+    border:none;
+    padding-top:.9rem;
+  }
+  >.describe{
+    height:1rem;
+    width:100%;
+    line-height: 1rem;
+    font-family:PingFangSC-Regular;
+    font-size: 22/50rem;
+    margin-bottom: .3rem;
+    color: #EB5312;
+  }
+}
+.classify_title{
+  border-bottom:1px solid #F4AA89;
+  padding:20/50rem 0px;
+  font-family: PingFangSC-Regular;
+  font-size: 28/50rem;
+  font-weight: normal;
+  color: #4A4A4A;
+  letter-spacing: 0;
+}
+.content_view{
+  border:1px solid #E0E6ED;
+}
+ .mui-table-view{
+
+  >.small_box{
+  display: flex;
+  width:100%;
+    >ul{
+      width:100%;
+      font-family: PingFangSC-Regular;
+      font-size: 28/50rem;
+      color: #4A4A4A;
+      letter-spacing: 0;
+      .fittings_list{
+        display: flex;
+        /*border-bottom:1px solid #E0E6ED;*/
+        >div{
+          flex:1;
+          border-right:1px solid #E0E6ED;
+          border-bottom:1px solid #E0E6ED;
+        }
+        >.right{
+          border-right:none;
+        }
+        >.center,.right{
+          >p{
+            color: #4A4A4A;
+            font-family: PingFangSC-Regular;
+            font-size: 28/50rem;
+            height:60/50rem;
+            line-height:60/50rem;
+            text-align: center;
+            background: #FBFBFB;
+          }
+          >p:last-of-type{
+            background:#fff;
+          }
+        }
+        >.left{
+          padding-top:.5rem;
+          text-align: center;
+          background:#fff;
+        }
+        .medium{
+          padding-top:0;
+          display: flex;
+          justify-content:center;
+          align-items:Center;
+
+
+          >div{
+            /*position:relative;*/
+            /*top:50%;*/
+            /*-webkit-transform:translateY(-50%);*/
+            /*left:0;*/
+            >p{
+              font-family: PingFangSC-Regular;
+              font-size: 22/50rem;
+              color: #EB5312;
+              letter-spacing: 0;
+            }
+            del{
+              font-size: 22/50rem;
+            }
+          }
+
+        }
+        .medium_table{
+          width:8.5rem;
+          >tr{
+            border-bottom:1px solid #E0E6ED;
+            td{
+              width:50%;
+              text-align: center;
+              line-height: 60/50rem;
+              border-right:1px solid #E0E6ED;
+            }
+            >td:nth-of-type(even){
+              border-right:none;
+            }
+          }
+          >tr:nth-of-type(odd){
+            background: #FBFBFB;
+
+          }
+          >tr:last-of-type{
+            border:none;
+          }
+        }
+      }
+
+      .fittings_list:last-of-type{
+        border:none;
+        >div{
+          border-bottom:none;
+        }
+      }
+
+
+    }
+    /////////////////
+  >.small_left{
+    width:84/50rem;
+    height:100%;
+    font-size:22/50rem;
+    text-align:center;
+    background:#FEADB3;
+    padding-top:.5rem;
+    line-height: .6rem;
+ }
+  >.small_repair{
+    border-radius: .3rem 0 0 0 ;
+  }
+  >.center_repair{
+   background: #D8E8E7;
+  }
+  >.big_repair{
+    background: #FFF5B5;
+  }
+ >.small_right{
+      flex:0;
+    >.fittings_name,.cost{
+      float:left;
+      font-family: PingFangSC-Regular;
+      font-size: 28/50rem;
+      color: #4A4A4A;
+      letter-spacing: 0;
+      height:60/50rem;
+      width:50%;
+      background:#FBFBFB;
+      line-height:60/50rem;
+      text-align: center;
+    }
+    >.name,.cost_price{
+        background:#fff;
+
+    }
+ }
+    >.title{
+      height:60/50rem;
+      line-height:60/50rem;
+      background: #D8D8D8;
+      width:100%;
+      display: flex;
+      font-family: PingFangSC-Regular;
+      letter-spacing: 0;
+      >p{
+        flex:1;
+        font-size: 28/50rem;
+        color: #4a4a4a;
+        text-align:center;
+      }
+    }
+}
+}
+// 服务介绍
+.box{
+  width:100%;
+  height:360/50rem;
+  >img{
+    display: block;
+    width:100%;
+    hieght:100%;
+  }
+  // background-image: linear-gradient(90deg, #6256C8 0%, #AC7EE9 100%);
+
+}
+.container{
+  >.server_describe{
+    padding-left:.4rem;
+    > .serve_scope{
+    padding:.4rem 0;
+    font-family: PingFangSC-Regular;
+    color: #4A4A4A;
+    letter-spacing: 0;
+  > span{
+    color: #EB5312;;
+  }
+ }
+ >span{
+  font-family: PingFangSC-Regular;
+  font-size: 24/50rem;
+  color: #9B9B9B;
+  letter-spacing: 0;
+  line-height: 30/50rem;
+ }
+ >.flow_path{
+    font-weight: normal;
+    font-family: PingFangSC-Regular;
+    font-size: 28/50rem;
+    color: #4A4A4A;
+    letter-spacing: 0;
+ }
+  }
+
+}
+ // 底部结算
+ .footer{
+  width:100%;
+   position:fixed;
+   bottom:0;
+   left:0;
+  height:98/50rem;
+  text-align: right;
+  line-height: 98/50rem;
+  background: #FFFFFF;
+  font-family: PingFangSC-Medium;
+  font-size: 32/50rem;
+  color: #EB5312;
+  font-weight: 600;
+  letter-spacing: 0;
+  >.accounts_btn{
+    height:100%;
+    margin-left:.6rem;
+    display: inline-block;
+    background: #EB5312;
+    width:200/50rem;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 32/50rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+  }
+ }
+#box{
+  margin-bottom:200/50rem;;
+  .altitude{
+    border:none;
+  }
+  .selector{
+    color:#fff;
+  }
+  .kongtiao{
+    .fittings_list{
+        border-bottom:1px solid rgba(0,0,0,.1);
+      }
+      .fittings_list:last-of-type{
+        // border-bottom:none;
+      }
+      border-bottom:none;
+  }
+  .heightKong:nth-of-type(even){
+    /*>.altitude{*/
+      background:rgba(0,0,0,0.1);
+  }
+  .heightKong{
+    .altitude{
+      text-align: center;
+    }
+  }
+}
+
+  *&.fade-enter-active, &.fade-leave-active{
+  transition: all .1s ease
+  }
+
+  &.fade-enter, &.fade-leave-active{
+   transform:translateX(100px);
+  }

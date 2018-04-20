@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>选择地图</title>
+    <script>
+      (function(doc, win) {
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function() {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if(clientWidth>=750){
+              docEl.style.fontSize = '50px';
+              return;
+            }
+            docEl.style.fontSize = clientWidth * 50 / 750 + 'px';
+          };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.3&key=c58652b94481fcb3781ac910bbced365&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+
+  <style>
+      html,body{
+          overflow: hidden;
+      }
+    #container{
+      margin-top: .01rem;
+      height: 100%;
+      background: #fff;
+      /*display: none;*/
+    }
+    #zhushiditu{
+      width: 0;
+      height: 0;
+      background: #fff;
+    }
+    #myPageTop{
+      top: 0px;
+      right: 0;
+      left: 0px;
+      margin: 0 0;
+    }
+    #myPageTop .myPageTop_text_box{
+      height: 1.8rem;
+      align-items: center;
+      vertical-align: middle;
+        clear: both;
+    }
+    #myPageTop .myPageTop_text_box .myPageTop_text_box_left{
+            width: 1.6rem;
+            height: 1.8rem;
+            float: left;
+          display: flex;
+          align-items: center;
+          justify-content:center;
+          color: #fff;
+          background:url("./images/left_arrows.png")center center no-repeat;
+          -webkit-background-size:28%;
+          background-size:28%;
+          /*background-color:rgba(201,201,206,.6);*/
+
+    }
+    #myPageTop .myPageTop_text_box .myPageTop_text_box_center{
+        width: 12.5rem;
+        height: 100%;
+        float: left;
+        margin-left:.2rem;
+        box-sizing: border-box;
+        position: relative;
+        /*background-color:#585858;*/
+    }
+      #myPageTop .myPageTop_text_box .myPageTop_search_icon{
+          width: .8rem;
+          height: 100%;
+          float: left;
+          /*background:url("./images/serach_amap.png")center center no-repeat;*/
+          /*-webkit-background-size:100%;*/
+          /*background-size:100%;*/
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
+      #myPageTop .myPageTop_text_box .myPageTop_search_icon img{
+          width:.6rem;
+          height: .6rem;
+          margin-top: .64rem;
+          margin-left: .2rem;
+      }
+    #myPageTop .myPageTop_text_box .myPageTop_text_box_center .search{
+          width: 100%;
+          height: 97%;
+          border-width: 0px;
+          padding:1px 0;
+          text-indent: .95rem;
+          font-size: .6rem;
+          -web-kit-appearance:none;
+          -moz-appearance: none;
+          outline:0;
+        border-radius: 1rem !important;
+        border: .01rem solid #C9C9CE;
+        background-color:rgba(243,243,243,1);
+    }
+    #myPageTop .myPageTop_text_box .myPageTop_text_box_right{
+      height: 100%;
+      /*display: flex;*/
+      /*align-items: center;*/
+      /*justify-content:center;*/
+      background-color:green;
+    }
+    /*定位图标隐藏*/
+    .auto-item{
+        height:1.2rem;
+        line-height: 1.2rem;
+        /*border-top: .01rem solid #585858;*/
+        /*margin-top: 5px;*/
+        font-size:.6rem;
+    }
+    .amap-geolocation-con{
+        left: 12px !important;
+        bottom: 30px !important;
+    }
+    .amap-geolocation-con .amap-geo{
+        display: block;
+    }
+    .amap-sug-result{
+          /*top: 58.0938px !important;*/
+      }
+      #amap-sug0{
+          border-top: 0px;
+      }
+  </style>
+</head>
+<body>
+<!--地图-->
+<div id="container"></div>
+  <div id="zhushiditu"></div>
+<!--地图-->
+
+<!--<div id="tip"></div>-->
+<div id="myPageTop">
+
+  <div class="myPageTop_text_box">
+
+    <div class="myPageTop_text_box_left"></div>
+
+
+    <div class="myPageTop_text_box_center">
+        <div class="myPageTop_search_icon">
+            <img src="./images/serach_amap.png" alt="">
+        </div>
+      <input class="search" id="tipinput" type="text" placeholder="查找小区/大厦等">
+    </div>
+
+    <!--<div class="myPageTop_text_box_right">保存</div>-->
+
+  </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+  var _this=this;
+
+
+//    注释地图显示  需要地图将zhushiditu 替换成 container  再改写下样式
+  var map = new AMap.Map("zhushiditu", {//地图加载
+    resizeEnable: true
+  });
+
+//  map.on('click', function(e) {
+//      alert('您在[ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ]的位置点击了地图！');
+//  });
+
+  var autoOptions = {//输入提示
+    input: "tipinput"
+  };
+  var auto = new AMap.Autocomplete(autoOptions);
+  var placeSearch = new AMap.PlaceSearch({//构造地点查询类
+    map: map
+  });
+  AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+  function select(e) {
+    placeSearch.setCity(e.poi.adcode);
+    placeSearch.search(e.poi.name);  //关键字查询查询
+    if(e.poi){
+        var get_dd_poi=JSON.parse(sessionStorage.getItem("dd_poi")) || '';
+      if(e.poi.id==get_dd_poi.id){
+          sessionStorage.removeItem("dd_poi")
+          sessionStorage.setItem("dd_poi",JSON.stringify(e.poi))
+      }else{
+          sessionStorage.setItem("dd_poi",JSON.stringify(e.poi))
+      }
+    }
+//    _this.parent.window.document.getElementById("user_name_data").value=JSON.stringify(e);
+  }
+
+//  //定位
+//  var geolocation;
+//  map.plugin('AMap.Geolocation', function() {
+//    geolocation = new AMap.Geolocation({
+//      enableHighAccuracy: true,//是否使用高精度定位，默认:true
+//      timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+//      buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+//      zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+//      buttonPosition:'RB'
+//    });
+//    map.addControl(geolocation);
+//    geolocation.getCurrentPosition();
+//    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+//    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+//  });
+//
+//  //解析定位结果
+//  function onComplete(data) {
+//    var str=['定位成功'];
+//    str.push('经度：' + data.position.getLng());
+//    str.push('纬度：' + data.position.getLat());
+//    if(data.accuracy){
+//      str.push('精度：' + data.accuracy + ' 米');
+//    }//如为IP精确定位结果则没有精度信息
+//    str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+////    document.getElementById('tip').innerHTML = str.join('<br>');
+//    console.log(str);
+//  }
+//  //解析定位错误信息
+//  function onError(data){
+//    console.log(data);
+////    document.getElementById('tip').innerHTML = '定位失败';
+//  }
+
+  var dd_tipinput=document.querySelector("#tipinput");
+  dd_tipinput.focus(); //获取焦点
+  dd_tipinput.oninput=function(){
+      if(dd_tipinput.value.length>25){
+          alert("只能输入25位字数以内")
+      }
+  };
+  //触发下拉框不消失，点击才消失
+  var dd_click_show=document.querySelector(".amap-sug-result");
+  var dd_clickFn=function (el,event) {
+      el.addEventListener(event,function (e) {
+          e.stopPropagation();
+          if(event=='click'){
+              dd_click_show.style.display='none';
+          }else{
+              dd_click_show.style.display='block';
+          }
+      })
+  };
+  dd_clickFn(dd_click_show,'touchstart');
+  dd_clickFn(dd_click_show,'touchend');
+  dd_clickFn(dd_click_show,'touchmove');
+  dd_clickFn(dd_click_show,'click');
+
+//  {"id":"BV10249968","name":"西乡(地铁站)","district":"广东省深圳市宝安区","adcode":"440306","location":{"O":22.575149,"M":113.86304799999999,
+  // "lng":113.863048,"lat":22.575149},"address":"1号线/罗宝线","typecode":"150500"}
+</script>
